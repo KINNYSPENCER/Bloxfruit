@@ -1,5 +1,5 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("Blox Fruits Script", "DarkTheme")
+local Window = Library.CreateLib("Blox Fruits Mobile UI", "DarkTheme")
 
 -- Auto Farming Tab
 local FarmingTab = Window:NewTab("Auto Farming")
@@ -70,11 +70,22 @@ ESPSection:NewToggle("Chest ESP", "See all chests through walls", function(state
     UpdateChestEsp(state) -- Calls function from main script
 end)
 
--- Settings Tab
+-- Mobile-Friendly Settings Tab
 local SettingsTab = Window:NewTab("Settings")
 local SettingsSection = SettingsTab:NewSection("General Settings")
 
-SettingsSection:NewKeybind("Toggle UI", "Press key to show/hide UI", Enum.KeyCode.F, function()
+-- UI Toggle Button for Mobile
+local MobileToggle = Instance.new("TextButton")
+MobileToggle.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+MobileToggle.Size = UDim2.new(0, 120, 0, 50)
+MobileToggle.Position = UDim2.new(0.85, 0, 0.85, 0) -- Bottom-right corner
+MobileToggle.Text = "Toggle UI"
+MobileToggle.BackgroundColor3 = Color3.fromRGB(255, 50, 50)
+MobileToggle.TextColor3 = Color3.fromRGB(255, 255, 255)
+MobileToggle.Font = Enum.Font.GothamBold
+MobileToggle.TextScaled = true
+
+-- Draggable UI
+MobileToggle.MouseButton1Click:Connect(function()
     Library:ToggleUI()
 end)
-
